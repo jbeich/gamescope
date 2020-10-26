@@ -4,7 +4,9 @@
 #include <mutex>
 #include <vector>
 #include <cstring>
+#if defined(__linux__)
 #include <sys/capability.h>
+#endif
 
 #include <signal.h>
 #include <unistd.h>
@@ -114,6 +116,7 @@ int main(int argc, char **argv)
 	if ( g_nOutputWidth == 0 )
 		g_nOutputWidth = g_nOutputHeight * 16 / 9;
 
+#if defined(__linux__)
 	cap_t caps;
 	caps = cap_get_proc();
 	cap_flag_value_t nicecapvalue = CAP_CLEAR;
@@ -146,6 +149,7 @@ int main(int argc, char **argv)
 	{
 		fprintf( stderr, "No CAP_SYS_NICE, falling back to regular-priority compute and threads.\nPerformance will be affected.\n" );
 	}
+#endif
 
 	if ( gpuvis_trace_init() != -1 )
 	{
