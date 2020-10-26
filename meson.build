@@ -34,6 +34,7 @@ wayland_protos = dependency('wayland-protocols', version: '>=1.17')
 xkbcommon = dependency('xkbcommon')
 thread_dep = dependency('threads')
 cap_dep = dependency('libcap', required: false)
+epoll_dep = dependency('epoll-shim', required: false)
 sdl_dep = dependency('SDL2')
 
 wlroots_dep = dependency(
@@ -87,7 +88,7 @@ executable(
     dep_x11, dep_xdamage, dep_xcomposite, dep_xrender, dep_xext, dep_xfixes,
     dep_xxf86vm, dep_xres, drm_dep, wayland_server, wayland_protos,
     xkbcommon, thread_dep, sdl_dep, wlroots_dep,
-    vulkan_dep, liftoff_dep, dep_xtst, cap_dep
+    vulkan_dep, liftoff_dep, dep_xtst, cap_dep, epoll_dep
   ],
   install: true,
 )
